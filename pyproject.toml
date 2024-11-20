@@ -1,6 +1,6 @@
 [project]
 name = "djpress-publish-mastodon"
-version = "1.0.0"
+version = "1.0.1"
 description = "A plugin for DJ Press that publishes new posts to Mastodon."
 readme = "README.md"
 authors = [{ name = "Stuart Maxwell", email = "stuart@amanzi.nz" }]
