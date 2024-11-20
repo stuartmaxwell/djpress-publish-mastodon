@@ -18,7 +18,7 @@ class Plugin(DJPressPlugin):
         base_url = self.config.get("base_url")
 
         # Silently fail if any of the required config is missing
-        if None in (access_token, instance_url, status_message, base_url):
+        if not access_token or not instance_url or not status_message or not base_url:
             return
 
         # We keep track of which posts have been published to Mastodon already by adding the post id to the data with a
