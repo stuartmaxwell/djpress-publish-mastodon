@@ -1,0 +1,15 @@
+[project]
+name = "djpress-publish-mastodon"
+version = "1.0.0"
+description = "A plugin for DJ Press that publishes new posts to Mastodon."
+readme = "README.md"
+authors = [{ name = "Stuart Maxwell", email = "stuart@amanzi.nz" }]
+requires-python = ">=3.10"
+dependencies = ["djpress>=0.13.0", "mastodon-py>=1.8.1"]
+
+[project.scripts]
+djpress-publish-mastodon = "djpress_publish_mastodon:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
