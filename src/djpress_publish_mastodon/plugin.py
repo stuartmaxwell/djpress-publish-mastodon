@@ -31,9 +31,7 @@ class Plugin(DJPressPlugin):
         try:
             mastodon = Mastodon(access_token=access_token, api_base_url=instance_url)
 
-            post_content = (
-                f"{status_message} {post.title} {urljoin(base_url, post.url)}"
-            )
+            post_content = f"{status_message} {post.title} {urljoin(base_url, post.url)}"
 
             mastodon.toot(post_content)
 
@@ -42,3 +40,5 @@ class Plugin(DJPressPlugin):
             self.save_data(data)
         except Exception:
             pass
+
+        return post
