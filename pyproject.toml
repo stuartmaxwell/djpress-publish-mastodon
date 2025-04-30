@@ -1,6 +1,6 @@
 [project]
 name = "djpress-publish-mastodon"
-version = "1.0.3"
+version = "1.1.0"
 description = "A plugin for DJ Press that publishes new posts to Mastodon."
 readme = "README.md"
 authors = [{ name = "Stuart Maxwell", email = "stuart@amanzi.nz" }]
@@ -21,7 +21,7 @@ build-backend = "hatchling.build"
 line-length = 120
 
 [tool.bumpver]
-current_version = "1.0.3"
+current_version = "1.1.0"
 version_pattern = "MAJOR.MINOR.PATCH"
 commit_message = "👍 bump version {old_version} -> {new_version}"
 commit = true
