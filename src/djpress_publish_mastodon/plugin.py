@@ -19,6 +19,10 @@ class Plugin(DJPressPlugin):
         instance_url = self.settings.get("instance_url")
         status_message = self.settings.get("status_message")
         base_url = self.settings.get("base_url")
+        microblog_category = self.settings.get("microblog_category")
+
+        # This will be set to true if the post is a microblog post
+        microblog = False
 
         # Silently fail if any of the required config is missing
         if not access_token or not instance_url or not status_message or not base_url:
@@ -31,10 +35,19 @@ class Plugin(DJPressPlugin):
         if post.pk in published_posts:
             return post
 
+        # Get a list of the category names that the post belongs to
+        post_categories = post.categories.all()
+        category_names = [category.slug for category in post_categories]
+        if microblog_category and microblog_category in category_names:
+            microblog = True
+
         try:
             mastodon = Mastodon(access_token=access_token, api_base_url=instance_url)
 
-            post_content = f"{status_message} {post.post_title} {urljoin(base_url, post.url)}"
+            if microblog:
+                post_content = post.content
+            else:
+                post_content = f"{status_message} {post.post_title} {urljoin(base_url, post.url)}"
 
             mastodon.toot(post_content)
 

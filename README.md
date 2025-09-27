@@ -4,11 +4,17 @@ A plugin for [DJ Press](https://pypi.org/project/djpress/) that automatically pu
 Mastodon server. When you publish a new post on your Django blog, this plugin will create a corresponding post on your
 Mastodon account with a customizable status message.
 
+**New Feature:** Now also supports micro-blogging. With this feature, you can post the full post content to your
+Mastodon account instead of the status message. The use-case is that you want to post short updates to your blog
+and have these posted to Mastodon as if they were posted there. There is no link back to your blog when using
+this feature. Add a `microblog_category` setting with the category slug you use for microblog posts.
+
 ## Features
 
 - 🚀 Automatic posting to Mastodon when blog posts are published
 - 📝 Customizable post message
 - ✅ Keeps track of posts that have already been posted to Mastodon, so you don't get multiple Mastodon posts
+- µ Micro-blogging support.
 
 ## Requirements
 
@@ -49,6 +55,7 @@ Mastodon account with a customizable status message.
                 "access_token": "...",  # or preferably load from an environment variable or secrets manager
                 "status_message": "🚀 I created a new blog post!",  # keep this brief
                 "base_url": "https://example.com",  # The base URL to your site
+                "microblog_category": "microblog",  # Optional setting to enable micro-blogging for a specific category slug.
             }
         }
     }
