@@ -68,7 +68,7 @@ this feature. Add a `microblog_category` setting with the category slug you use 
 1. Log into your Mastodon instance
 2. Go to Preferences > Development
 3. Click "New Application"
-4. Give it a name (e.g., "My DJ Press Blog")
+4. Give it a name (e.g., "My DJ Press Blog") - this will be displayed in the toot's metadata.
 5. Select the following permissions:
    - `write:statuses`
 6. Save and copy the access token into the `DJPRESS_SETTINGS`.
@@ -77,6 +77,11 @@ this feature. Add a `microblog_category` setting with the category slug you use 
 
 Once configured, the plugin works automatically. When you publish a new blog post, it will be posted to your Mastodon
 account using the configured message.
+
+If you configure the `microblog_category` settings, posts that belong to that category will be posted to Mastodon with
+the full content and no link back to the original post. Note that Mastodon does not support HTML content and it also
+won't render the Markdown as rich text. In other words, any Markdown syntax you use in the post will be displayed in
+the Mastodon toot as-is.
 
 **Note** that a published post will only be published to Mastodon once - the first time it is saved and with
 `is_published = True`. This plugin keeps track of which posts have been published to Mastodon and won't publish them
@@ -103,4 +108,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ## Credits
 
 Created by Stuart Maxwell
-Powered by [DJ Press](https://github.com/yourusername/djpress)
+Powered by [DJ Press](https://pypi.org/project/djpress/)
