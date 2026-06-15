@@ -2,35 +2,29 @@
 @default:
     @just --list
 
-# Set the uv run command
-uv := "uv run"
+# Synchronize the current working set with lock file
+sync:
+    pdm sync --clean
 
-#Set the uv command to run a tool
-uv-tool := "uv tool run"
+# Resolve and lock dependencies
+lock:
+    pdm lock --exclude-newer 7d
 
-# Run Ruff linking
-@lint:
-    {{uv-tool}} ruff check
+# Run the command line interface
+@run *ARGS:
+    pdm run djcheckup {{ ARGS }}
 
-# Run Ruff formatting
-@format:
-    {{uv-tool}} ruff format
+# Install pre-commit hooks
+@pc-install:
+    pdm run pre-commit install
 
-# Sync the package
-@sync:
-    uv sync --all-extras
+# Upgrade pre-commit hooks
+@pc-up:
+    pre-commit autoupdate
 
-# Sync the package
-@sync-up:
-    uv sync --all-extras --upgrade
-
-# Lock the package version
-@lock:
-    uv lock
-
-# Build the package
-@build:
-    uv build
+# Run pre-commit hooks
+@pc-run:
+    pre-commit run --all-files
 
 # Create a new GitHub release - this requires Python 3.11 or newer, and the GitHub CLI must be installed and configured
 version := `echo "from tomllib import load; print(load(open('pyproject.toml', 'rb'))['project']['version'])" | uv run - `
@@ -44,26 +38,3 @@ version := `echo "from tomllib import load; print(load(open('pyproject.toml', 'r
 @version:
     git pull
     echo {{version}}
-
-# Upgrade pre-commit hooks
-@pc-up:
-    {{uv-tool}} pre-commit autoupdate
-
-# Run pre-commit hooks
-@pc-run:
-    {{uv-tool}} pre-commit run --all-files
-
-# Use BumpVer to increase the patch version number. Use just bump -d to view a dry-run.
-@bump *ARGS:
-    uv run bumpver update --patch {{ ARGS }}
-    uv sync
-
-# Use BumpVer to increase the minor version number. Use just bump -d to view a dry-run.
-@bump-minor *ARGS:
-    uv run bumpver update --minor {{ ARGS }}
-    uv sync
-
-# Use BumpVer to increase the major version number. Use just bump -d to view a dry-run.
-@bump-major *ARGS:
-    uv run bumpver update --major {{ ARGS }}
-    uv sync

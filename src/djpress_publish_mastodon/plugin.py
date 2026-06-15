@@ -16,8 +16,8 @@ class Plugin(DJPressPlugin):
     def publish_post(self, post: "Post") -> "Post":
         # Get the settings from the settings dictionary
         access_token = self.settings.get("access_token")
-        instance_url = self.settings.get("instance_url")
-        status_message = self.settings.get("status_message")
+        instance_url = self.settings.get("instance_url", "https://mastodon.social")
+        status_message = self.settings.get("status_message", "🚀 I created a new blog post!")
         base_url = self.settings.get("base_url")
         microblog_category = self.settings.get("microblog_category")
 

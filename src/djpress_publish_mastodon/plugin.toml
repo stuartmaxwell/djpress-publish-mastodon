@@ -1,0 +1,41 @@
+name = "Publish to Mastodon"
+description = "Automatically publish new blog posts to your Mastodon account."
+version = "1.4.0"
+author = "Stuart Maxwell"
+
+[[options]]
+name = "instance_url"
+label = "Instance URL"
+description = "The Mastodon instance URL you want to connect to."
+type = "url"
+default = "https://mastodon.social"
+required = true
+
+[[options]]
+name = "access_token"
+label = "Access Token"
+description = "Your Mastodon API access token."
+type = "text"
+required = true
+
+[[options]]
+name = "status_message"
+label = "Status Message"
+description = "The message to post when a new blog post is published."
+type = "text"
+default = "🚀 I created a new blog post!"
+required = false
+
+[[options]]
+name = "base_url"
+label = "Base URL"
+description = "The base URL of your site, e.g. 'https://myblog.example.com'"
+type = "url"
+required = true
+
+[[options]]
+name = "microblog_category"
+label = "Microblog Category"
+description = "Optional setting to enable micro-blogging for a specific category slug. A micro-blog post will include the full post content as-is."
+type = "text"
+required = false
