@@ -51,6 +51,7 @@ this feature. Add a `microblog_category` setting with the category slug you use 
         "PLUGIN_SETTINGS": {
             # ... existing plugins
             "djpress_publish_mastodon": {
+                "enabled": True,
                 "instance_url": "https://mastodon.social",  # or the instance you are using
                 "access_token": "...",  # or preferably load from an environment variable or secrets manager
                 "status_message": "🚀 I created a new blog post!",  # keep this brief
