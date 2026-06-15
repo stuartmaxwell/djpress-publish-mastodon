@@ -26,6 +26,21 @@ lock:
 @pc-run:
     pre-commit run --all-files
 
+# Use BumpVer to increase the patch version number. Use just bump -d to view a dry-run.
+@bump *ARGS:
+    pdm run bumpver update --patch {{ ARGS }}
+    pdm sync
+
+# Use BumpVer to increase the minor version number. Use just bump -d to view a dry-run.
+@bump-minor *ARGS:
+    pdm run bumpver update --minor {{ ARGS }}
+    pdm sync
+
+# Use BumpVer to increase the major version number. Use just bump -d to view a dry-run.
+@bump-major *ARGS:
+    pdm run bumpver update --major {{ ARGS }}
+    pdm sync
+
 # Create a new GitHub release - this requires Python 3.11 or newer, and the GitHub CLI must be installed and configured
 version := `echo "from tomllib import load; print(load(open('pyproject.toml', 'rb'))['project']['version'])" | uv run - `
 
